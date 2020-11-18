@@ -1,2 +1,4 @@
 ﻿  NMSIAdrianFirstAppGrafA.cpp
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(84,34): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(84,70): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   NMSIAdrianFirstAppGrafA.vcxproj -> C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\x64\Debug\NMSIAdrianFirstAppGrafA.exe
