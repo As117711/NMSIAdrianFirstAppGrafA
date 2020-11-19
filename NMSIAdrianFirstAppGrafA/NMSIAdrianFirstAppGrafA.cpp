@@ -90,6 +90,7 @@ void setStartingAndDestinationNodes(string content, int& start, int& destination
 }
 
 void showTheMatrix(int** neighbours, int size) {
+    cout << "Show the matrix: \n";
     for (int i = 0; i < size; i++)
     {
         cout << "\nNode [" << i+1 << "]: ";
@@ -98,6 +99,7 @@ void showTheMatrix(int** neighbours, int size) {
             cout << neighbours[i][j] << " ";
         }
     }
+    cout << "\n";
 }
 
 void fillTheMatrix(string content, int nodeNumber, int size, int** table) {
@@ -119,6 +121,7 @@ void fillTheMatrix(string content, int nodeNumber, int size, int** table) {
         counter++;
     }
 }
+
 
 int main()
 {
@@ -148,16 +151,5 @@ int main()
 
     showTheMatrix(neighbours, nodes.size());
 
-    /*
-    cout << "Hello World!\n";
-
-    if (iFile.is_open()) {   //checking whether the file is open
-        string tp;
-        while (getline(iFile, tp)) { //read data frogithubm file object and put it into string.
-            cout << tp << "\n"; //print the data of the string
-        }
-        iFile.close(); //close the file object.
-    }
-    */
 }
 
