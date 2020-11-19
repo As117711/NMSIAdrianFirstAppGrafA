@@ -1,4 +1,7 @@
 ﻿  NMSIAdrianFirstAppGrafA.cpp
 C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(83,34): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(83,70): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(117,42): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(145,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(149,43): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   NMSIAdrianFirstAppGrafA.vcxproj -> C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\x64\Debug\NMSIAdrianFirstAppGrafA.exe

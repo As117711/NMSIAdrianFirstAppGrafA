@@ -89,8 +89,35 @@ void setStartingAndDestinationNodes(string content, int& start, int& destination
     cout << "Starting Node Number: "<<start<<" Destination Node Number: " << destination << "\n" << "\n";
 }
 
-void fillTheMatrix() {
+void showTheMatrix(int** neighbours, int size) {
+    for (int i = 0; i < size; i++)
+    {
+        cout << "\nNode [" << i+1 << "]: ";
+        for (int j = 0; j < size; j++)
+        {
+            cout << neighbours[i][j] << " ";
+        }
+    }
+}
 
+void fillTheMatrix(string content, int nodeNumber, int size, int** table) {
+    string original = content;
+
+    string delimiter = " ";
+    size_t pos = 0;
+    string token;
+    int counter = 0;
+
+    while (((pos = content.find(delimiter)) != std::string::npos) && nodeNumber<=size && !content.empty()) {
+        token = content.substr(0, pos);
+        if (!token.empty())
+        {
+            token = token.substr(0, token.length() - 2);
+        }
+        table[nodeNumber][counter] = atof(token.c_str());
+        content.erase(0, pos + delimiter.length());
+        counter++;
+    }
 }
 
 int main()
@@ -99,6 +126,8 @@ int main()
     iFile.open("graf.txt");
 
     map<int, node> nodes;
+    int** neighbours;
+
     string content;
     getline(iFile, content);
     fillTheMap(content, nodes);
@@ -106,8 +135,18 @@ int main()
     getline(iFile, content);
     setStartingAndDestinationNodes(content, startNodeNumber, destinationNodeNumber);
 
+    neighbours = new int*[nodes.size()];
+    for (int j = 0; j < nodes.size(); j++) {
+        neighbours[j] = new int[nodes.size()];
+    }
+
+    for (int j = 0; j < nodes.size(); j++) {
+        getline(iFile, content);
+        fillTheMatrix(content, j, nodes.size(), neighbours);
+    }
 
 
+    showTheMatrix(neighbours, nodes.size());
 
     /*
     cout << "Hello World!\n";
