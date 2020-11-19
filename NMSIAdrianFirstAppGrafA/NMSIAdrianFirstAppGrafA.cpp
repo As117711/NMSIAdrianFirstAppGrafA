@@ -73,17 +73,16 @@ void setStartingAndDestinationNodes(string content, int& start, int& destination
     string token;
     int counter = 1;
 
-    while ((pos = content.find(delimiter)) != std::string::npos) {
-        token = content.substr(0, pos);
+    while (((pos = content.find(delimiter)) != std::string::npos || !content.empty()) && destination == 0) {
+        token = content.substr(0, pos); 
         if (!token.empty())
         {
             token = token.substr(0, token.length() - 2);
         }
-        cout << "setStartingAndDestinationNodes : " << token << std::endl;
 
         start == 0 ? start = atof(token.c_str()) : destination = atof(token.c_str());
-
-        content.erase(0, pos + delimiter.length() + 1);
+        pos++;
+        content.erase(0, pos + delimiter.length()-1);
 
     }
 
