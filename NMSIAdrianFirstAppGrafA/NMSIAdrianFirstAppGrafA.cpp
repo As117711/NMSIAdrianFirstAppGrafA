@@ -86,6 +86,8 @@ void setStartingAndDestinationNodes(string content, int& start, int& destination
         }
 
         start == 0 ? start = atof(token.c_str()) : destination = atof(token.c_str());
+        if ((content.find(delimiter) == std::string::npos && !content.empty())) { destination = atof(content.c_str()); }
+
         pos++;
         content.erase(0, pos + delimiter.length()-1);
 
@@ -199,7 +201,7 @@ int main()
 {
     ifstream iFile;
     //iFile.open("graf.txt");
-    iFile.open("Grafy/1.txt");
+    iFile.open("Grafy/8.txt");
 
     map<int, node> nodes, considered;
     double** neighbours;
