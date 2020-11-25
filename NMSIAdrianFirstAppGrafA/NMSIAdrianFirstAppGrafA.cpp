@@ -94,7 +94,7 @@ void setStartingAndDestinationNodes(string content, int& start, int& destination
     cout << "Starting Node Number: "<<start<<" Destination Node Number: " << destination << "\n" << "\n";
 }
 
-void showTheMatrix(int** neighbours, int size) {
+void showTheMatrix(double** neighbours, int size) {
     cout << "Show the matrix: \n";
     for (int i = 0; i < size; i++)
     {
@@ -163,7 +163,7 @@ void showThePath(map<int, int> previous, int destinationNode) {
     }
 }
 
-void fillTheMatrix(string content, int nodeNumber, int size, int** table) {
+void fillTheMatrix(string content, int nodeNumber, int size, double** table) {
     string original = content;
 
     string delimiter = " ";
@@ -198,10 +198,11 @@ bool mapContainsKey(map<int, node> considered, int key)
 int main()
 {
     ifstream iFile;
-    iFile.open("graf.txt");
+    //iFile.open("graf.txt");
+    iFile.open("Grafy/1.txt");
 
     map<int, node> nodes, considered;
-    int** neighbours;
+    double** neighbours;
 
     string content;
     getline(iFile, content);
@@ -210,9 +211,9 @@ int main()
     getline(iFile, content);
     setStartingAndDestinationNodes(content, startNodeNumber, destinationNodeNumber);
 
-    neighbours = new int*[nodes.size()];
+    neighbours = new double*[nodes.size()];
     for (int j = 0; j < nodes.size(); j++) {
-        neighbours[j] = new int[nodes.size()];
+        neighbours[j] = new double[nodes.size()];
     }
 
     for (int j = 0; j < nodes.size(); j++) {

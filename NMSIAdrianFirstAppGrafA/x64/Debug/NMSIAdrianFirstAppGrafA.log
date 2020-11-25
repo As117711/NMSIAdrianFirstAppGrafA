@@ -3,13 +3,13 @@ C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSI
 C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(88,70): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(139,45): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
 C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(140,12): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(180,42): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(220,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(223,43): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(241,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(246,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(221,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(224,43): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(242,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(247,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(250,81): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(272,57): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(248,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(251,81): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(261,27): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
 C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(273,57): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA\NMSIAdrianFirstAppGrafA.cpp(274,57): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   NMSIAdrianFirstAppGrafA.vcxproj -> C:\Users\as117\source\repos\NMSIAdrianFirstAppGrafA\x64\Debug\NMSIAdrianFirstAppGrafA.exe
