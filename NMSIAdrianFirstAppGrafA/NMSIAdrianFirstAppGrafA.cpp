@@ -33,16 +33,19 @@ void fillTheMap(string content, map<int, node>& nodes)
     string token, token2;
     int counter = 0;
 
-    while ((pos = content.find(delimiter)) != std::string::npos) {
+    while (((pos = content.find(delimiter)) != std::string::npos) || (content.find(delimiter) == std::string::npos && !content.empty())) {
         node* newNode = new node();
         token = content.substr(0, pos);
-        if (!token.empty()) 
+        if (!token.empty() && !(content.find(delimiter) == std::string::npos && !content.empty()))
         { 
             token = token.substr(0, token.length() - 2);
         }
-        //cout << token << std::endl;
+        if (content.find(delimiter) == std::string::npos && !content.empty()) {
+            token.erase(token.length() - 1, token.length());
+        }
+        cout << token << std::endl;
 
-        while ((pos2 = token.find(delimiter2)) != std::string::npos && !token.empty()) {
+        while (((pos2 = token.find(delimiter2)) != std::string::npos && !token.empty())) {
         token2 = token.substr(0, pos2);
         newNode->number = counter;
         newNode->x = atof(token2.c_str());
@@ -52,8 +55,9 @@ void fillTheMap(string content, map<int, node>& nodes)
         counter++;
         }
 
+
+        if ((content.find(delimiter) == std::string::npos && !content.empty())) { break; }
         content.erase(0, pos + delimiter.length());
-        
     }
 
     for (int i = 0; i < nodes.size(); i++)
@@ -86,7 +90,7 @@ void setStartingAndDestinationNodes(string content, int& start, int& destination
         content.erase(0, pos + delimiter.length()-1);
 
     }
-
+    start--; destination--;
     cout << "Starting Node Number: "<<start<<" Destination Node Number: " << destination << "\n" << "\n";
 }
 
@@ -167,13 +171,15 @@ void fillTheMatrix(string content, int nodeNumber, int size, int** table) {
     string token;
     int counter = 0;
 
-    while (((pos = content.find(delimiter)) != std::string::npos) && nodeNumber<=size && !content.empty()) {
+    while (((pos = content.find(delimiter)) != std::string::npos) && nodeNumber<=size && !content.empty() || (content.find(delimiter) == std::string::npos && !content.empty())) {
         token = content.substr(0, pos);
         if (!token.empty())
         {
             token = token.substr(0, token.length() - 2);
         }
         table[nodeNumber][counter] = atof(token.c_str());
+
+        if (content.find(delimiter) == std::string::npos && !content.empty()) { break; }
         content.erase(0, pos + delimiter.length());
         counter++;
     }
