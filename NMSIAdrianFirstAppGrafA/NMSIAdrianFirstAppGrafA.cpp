@@ -145,10 +145,10 @@ int findSmallestFNodeValueForMap(map<int, node> nodes, int size, map<int, double
     int smallestFNodeNumber = -1; 
     double smallestFNodeValue = -1;
 
-    for (int i = 0; i < size; i++) {
-        if (f[i] < smallestFNodeValue || smallestFNodeValue == -1) {
-            smallestFNodeNumber = i;
-            smallestFNodeValue = f[i];
+    for (std::map<int, node>::iterator it = nodes.begin(); it != nodes.end(); ++it) {
+        if (f[it->first] < smallestFNodeValue || smallestFNodeNumber == -1) {
+            smallestFNodeNumber = it->first;
+            smallestFNodeValue = f[it->first];
         }
     }
 
@@ -247,17 +247,20 @@ int main()
     showTheMatrixDouble(f, nodes.size(), "f");
 
     while (!considered.empty()) {
-        node actual = nodes[findSmallestFNodeValueForMap(considered, nodes.size(), f)];
+        smallestFNode = findSmallestFNodeValueForMap(considered, nodes.size(), f);
+        node actual = nodes[smallestFNode];
         if (actual.number == destinationNodeNumber) {
-            cout << "Show the path: \n";
+            cout << "\nShow the path: \n";
             showThePath(previusNodes, destinationNodeNumber);
             cout << "\n";
+            break;
         }
         considered.erase(smallestFNode);
         for (int i = 0; i < nodes.size(); i++) {
+            int temporaru = neighbours[actual.number][i];
             if (neighbours[actual.number][i] != 0) {
                 double tempG = g[actual.number] + neighbours[actual.number][i];
-                if (tempG < g[i]) {
+                if (tempG < g[i] || g[i] == -1) {
                     previusNodes[i] = actual.number;
                     g[i] = tempG;
                     f[i] = g[i] + h[i];
@@ -265,11 +268,12 @@ int main()
                         considered[i] = nodes[i];
                     }
                 }
+                cout << "\nStep [" << i << "]\n";
+                showTheMatrixDouble(g, nodes.size(), "g");
+                showTheMatrixDouble(f, nodes.size(), "f");
+                //getchar();
             }
-            cout << "\nStep [" << i << "]\n";
-            showTheMatrixDouble(g, nodes.size(), "g");
-            showTheMatrixDouble(f, nodes.size(), "f");
-            getchar();
+            
         }
 
     }
