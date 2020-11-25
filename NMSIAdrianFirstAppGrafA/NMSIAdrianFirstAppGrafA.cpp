@@ -158,8 +158,8 @@ int findSmallestFNodeValueForMap(map<int, node> nodes, int size, map<int, double
 void showThePath(map<int, int> previous, int destinationNode) {
     
     if (previous[destinationNode] != -1) {
-        cout << previous[destinationNode] << " ";
         showThePath(previous, previous[destinationNode]);
+        cout << previous[destinationNode]+1 << " ";
     }
 }
 
@@ -253,7 +253,8 @@ int main()
         if (actual.number == destinationNodeNumber) {
             cout << "\nShow the path: \n";
             showThePath(previusNodes, destinationNodeNumber);
-            cout << "\n";
+            cout << destinationNodeNumber+1 << " " << "\n";
+            cout << "\nOverall cost: " << f[startNodeNumber] <<"\n";
             break;
         }
         considered.erase(smallestFNode);
@@ -278,5 +279,12 @@ int main()
         }
 
     }
+
+    /* Show detailed final data
+    cout << "\Final [" << 0 << "]\n";
+    showTheMatrixDouble(g, nodes.size(), "g");
+    showTheMatrixDouble(f, nodes.size(), "f");
+    showTheMatrixInt(previusNodes, nodes.size(), "previous");
+    */
 }
 
