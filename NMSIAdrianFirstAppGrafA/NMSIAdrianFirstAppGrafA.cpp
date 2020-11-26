@@ -20,7 +20,7 @@ struct node {
 
 void fillTheMap(string content, map<int, node>& nodes)
 {
-    cout << "Source content for Nodes Map: " << content << "\n" << "\n";
+    //cout << "Source content for Nodes Map: " << content << "\n" << "\n";
 
     string delimiter = "(", delimiter2 = ",";
 
@@ -38,7 +38,7 @@ void fillTheMap(string content, map<int, node>& nodes)
         if (content.find(delimiter) == std::string::npos && !content.empty()) {
             token.erase(token.length() - 1, token.length());
         }
-        cout << token << std::endl;
+        //cout << token << std::endl;
 
         while (((pos2 = token.find(delimiter2)) != std::string::npos && !token.empty())) {
         token2 = token.substr(0, pos2);
@@ -54,15 +54,16 @@ void fillTheMap(string content, map<int, node>& nodes)
         if ((content.find(delimiter) == std::string::npos && !content.empty())) { break; }
         content.erase(0, pos + delimiter.length());
     }
-
+    /*
     for (int i = 0; i < nodes.size(); i++)
     {
         cout << "Node [" << nodes[i].number << "] x:" << nodes[i].x << " y:" << nodes[i].y << " \n";
     }
+    */
 }
 
 void setStartingAndDestinationNodes(string content, int& start, int& destination) {
-    cout << "\nStarting and Destination Nodes setup: " << content << "\n" << "\n";
+    //cout << "\nStarting and Destination Nodes setup: " << content << "\n" << "\n";
 
     string delimiter = " ";
 
@@ -88,7 +89,7 @@ void setStartingAndDestinationNodes(string content, int& start, int& destination
 
     }
     start--; destination--;
-    cout << "Starting Node Number: "<<start<<" Destination Node Number: " << destination << "\n" << "\n";
+    //cout << "Starting Node Number: "<<start<<" Destination Node Number: " << destination << "\n" << "\n";
 }
 
 void showTheMatrix(long double** neighbours, int size) {
@@ -143,16 +144,6 @@ long findSmallestFNodeValueForMap(map<int, node>& nodes, int& size, map<int, lon
     long double smallestFNodeValue = INFINITY;
 
     for (std::map<int, node>::iterator it = nodes.begin(); it != nodes.end(); ++it) {
-        /*if (smallestFNodeNumber == -1) {
-            smallestFNodeNumber = it->second.number;
-            smallestFNodeValue = f[it->second.number];
-        }
-        
-        if (f[it->second.number] < smallestFNodeValue) {
-            smallestFNodeNumber = it-> second.number;
-            smallestFNodeValue = f[it->second.number];
-        }*/
-        
         if (f[it->second.number] < smallestFNodeValue || smallestFNodeNumber == -1) {
             smallestFNodeNumber = it->second.number;
             smallestFNodeValue = f[it->second.number];
@@ -209,100 +200,107 @@ bool mapContainsKey(map<int, node>& considered, int key)
 
 int main()
 {
-    ifstream iFile;
-    //iFile.open("graf.txt");
-    iFile.open("Grafy/6.txt");
+    while (true) {
+        ifstream iFile;
+        //iFile.open("graf.txt");
+        string file;
+        cin >> file;
+        iFile.open("Grafy/" + file + ".txt");
 
-    map<int, node> nodes, considered;
-    long double** neighbours;
+        map<int, node> nodes, considered;
+        long double** neighbours;
 
-    string content; int size;
-    getline(iFile, content);
-    fillTheMap(content, nodes);
-    int startNodeNumber, destinationNodeNumber;
-    getline(iFile, content);
-    setStartingAndDestinationNodes(content, startNodeNumber, destinationNodeNumber);
-
-
-    size = nodes.size();
-    neighbours = new long double*[size];
-    for (int j = 0; j < size; j++) {
-        neighbours[j] = new long double[size];
-    }
-
-    for (int j = 0; j < size; j++) {
+        string content; int size;
         getline(iFile, content);
-        fillTheMatrix(content, j, size, neighbours);
-    }
+        fillTheMap(content, nodes);
+        int startNodeNumber, destinationNodeNumber;
+        getline(iFile, content);
+        setStartingAndDestinationNodes(content, startNodeNumber, destinationNodeNumber);
 
-    showTheMatrix(neighbours, size);
+
+        size = nodes.size();
+        neighbours = new long double* [size];
+        for (int j = 0; j < size; j++) {
+            neighbours[j] = new long double[size];
+        }
+
+        for (int j = 0; j < size; j++) {
+            getline(iFile, content);
+            fillTheMatrix(content, j, size, neighbours);
+        }
+
+        //showTheMatrix(neighbours, size);
 
 
-    /* Begine the procedure */
+        /* Begine the procedure */
 
-    considered[startNodeNumber] = nodes[startNodeNumber];
-    int smallestFNode = startNodeNumber;
+        considered[startNodeNumber] = nodes[startNodeNumber];
+        int smallestFNode = startNodeNumber;
 
-    map<int, long double> g, f, h;
-    map<int, int> previusNodes;
+        map<int, long double> g, f, h;
+        map<int, int> previusNodes;
 
-    for (long int i = 0; i < size; i++) {
-        h[i] = calculateDistance(nodes[i].x, nodes[i].y, nodes[destinationNodeNumber].x, nodes[destinationNodeNumber].y);
-        g[i] = INFINITY;
-        f[i] = INFINITY;
-        previusNodes[i] = -1;
-    }
-
-    showTheMatrixDouble(h, size, "h");
-
-    g[startNodeNumber] = 0;
-    f[startNodeNumber] = h[startNodeNumber];
-
-    showTheMatrixDouble(g, size, "g");
-    showTheMatrixDouble(f, size, "f");
-
-    while (!considered.empty()) {
-        smallestFNode = findSmallestFNodeValueForMap(considered, size, f);
-        node actual = nodes[smallestFNode];
-        long int actualNumber = actual.number;
-        considered.erase(smallestFNode);
         for (long int i = 0; i < size; i++) {
-            if (neighbours[actualNumber][i] > 0) {
-                long double tempG = g[actualNumber]*1.0 + neighbours[actualNumber][i];
-                if (tempG < g[i]) {
-                    previusNodes[i] = actualNumber;
-                    g[i] = tempG;
-                    f[i] = g[i] + h[i];
-                    if (mapContainsKey(considered,i) != true) {
-                        considered[i] = nodes[i];
-                    }
+            h[i] = calculateDistance(nodes[i].x, nodes[i].y, nodes[destinationNodeNumber].x, nodes[destinationNodeNumber].y);
+            g[i] = INFINITY;
+            f[i] = INFINITY;
+            previusNodes[i] = -1;
+        }
+
+        //showTheMatrixDouble(h, size, "h");
+
+        g[startNodeNumber] = 0;
+        f[startNodeNumber] = h[startNodeNumber];
+
+        //showTheMatrixDouble(g, size, "g");
+        //showTheMatrixDouble(f, size, "f");
+
+        while (!considered.empty()) {
+            smallestFNode = findSmallestFNodeValueForMap(considered, size, f);
+            node actual = nodes[smallestFNode];
+            long int actualNumber = actual.number;
+            considered.erase(smallestFNode);
+            for (long int i = 0; i < size; i++) {
+                if (smallestFNode == destinationNodeNumber) {
+                    cout << "\nShow the path: \n";
+                    showThePath(previusNodes, destinationNodeNumber);
+                    cout << destinationNodeNumber + 1 << " " << "\n";
+                    cout << "\nOverall cost: " << setprecision(8) << f[destinationNodeNumber] << "\n";
+                    return 0;
                 }
-                /*cout << "\nStep [" << i << "]\n";
-                showTheMatrixDouble(g, size, "g");
-                showTheMatrixDouble(f, size, "f");*/
-                //getchar();
+                if (neighbours[actualNumber][i] > 0) {
+                    long double tempG = g[actualNumber] * 1.0 + neighbours[actualNumber][i];
+                    if (tempG < g[i]) {
+                        previusNodes[i] = actualNumber;
+                        g[i] = tempG;
+                        f[i] = g[i] + h[i];
+                        if (mapContainsKey(considered, i) != true) {
+                            considered[i] = nodes[i];
+                        }
+                    }
+                    /*cout << "\nStep [" << i << "]\n";
+                    showTheMatrixDouble(g, size, "g");
+                    showTheMatrixDouble(f, size, "f");*/
+                    //getchar();
+                }
+
             }
-            
-        }
-        if (actualNumber == destinationNodeNumber) {
-            cout << "\nShow the path: \n";
-            showThePath(previusNodes, destinationNodeNumber);
-            cout << destinationNodeNumber + 1 << " " << "\n";
-            cout << "\nOverall cost: " << setprecision(8) << f[destinationNodeNumber] << "\n";
-            //break;
+
         }
 
+        //Show detailed final data
+        /*
+        cout << "\nFinal [" << 0 << "]\n";
+        showTheMatrixDouble(g, size, "g");
+        showTheMatrixDouble(f, size, "f");
+        showTheMatrixInt(previusNodes, size, "previous");
+        */
+        /*
+        cout << "\nShow the path: \n";
+        showThePath(previusNodes, destinationNodeNumber);
+        cout << destinationNodeNumber + 1 << " " << "\n";
+        cout << "\nOverall cost: " << setprecision(8) << f[destinationNodeNumber] << "\n";
+        */
     }
-
-    //Show detailed final data
-    cout << "\nFinal [" << 0 << "]\n";
-    showTheMatrixDouble(g, size, "g");
-    showTheMatrixDouble(f, size, "f");
-    showTheMatrixInt(previusNodes, size, "previous");
-
-    cout << "\nShow the path: \n";
-    showThePath(previusNodes, destinationNodeNumber);
-    cout << destinationNodeNumber + 1 << " " << "\n";
-    cout << "\nOverall cost: " << setprecision(8) << f[destinationNodeNumber] << "\n";
 }
 
