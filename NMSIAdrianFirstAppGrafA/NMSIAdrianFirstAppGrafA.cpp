@@ -140,12 +140,22 @@ long double compareNodesFValue(map<int, node>& nodes, int& first, int& second, m
 long findSmallestFNodeValueForMap(map<int, node>& nodes, int& size, map<int, long double>& f) {
 
     long int smallestFNodeNumber = -1;
-    long double smallestFNodeValue = -1;
+    long double smallestFNodeValue = INFINITY;
 
     for (std::map<int, node>::iterator it = nodes.begin(); it != nodes.end(); ++it) {
-        if (f[it->first] < smallestFNodeValue || smallestFNodeNumber == -1) {
-            smallestFNodeNumber = it->first;
-            smallestFNodeValue = f[it->first];
+        /*if (smallestFNodeNumber == -1) {
+            smallestFNodeNumber = it->second.number;
+            smallestFNodeValue = f[it->second.number];
+        }
+        
+        if (f[it->second.number] < smallestFNodeValue) {
+            smallestFNodeNumber = it-> second.number;
+            smallestFNodeValue = f[it->second.number];
+        }*/
+        
+        if (f[it->second.number] < smallestFNodeValue || smallestFNodeNumber == -1) {
+            smallestFNodeNumber = it->second.number;
+            smallestFNodeValue = f[it->second.number];
         }
     }
 
@@ -170,6 +180,10 @@ void fillTheMatrix(string content, int& nodeNumber, int& size, long double** tab
 
     while (((pos = content.find(delimiter)) != std::string::npos) && nodeNumber<=size && !content.empty() || (content.find(delimiter) == std::string::npos && !content.empty())) {
         token = content.substr(0, pos);
+        if (token == "" || token == " ") {
+            content.erase(0, pos + delimiter.length());
+            continue;
+        }
         if (!token.empty())
         {
             token = token.substr(0, token.length() - 2);
@@ -197,7 +211,7 @@ int main()
 {
     ifstream iFile;
     //iFile.open("graf.txt");
-    iFile.open("Grafy/5.txt");
+    iFile.open("Grafy/6.txt");
 
     map<int, node> nodes, considered;
     long double** neighbours;
@@ -234,8 +248,8 @@ int main()
 
     for (long int i = 0; i < size; i++) {
         h[i] = calculateDistance(nodes[i].x, nodes[i].y, nodes[destinationNodeNumber].x, nodes[destinationNodeNumber].y);
-        g[i] = -1;
-        f[i] = -1;
+        g[i] = INFINITY;
+        f[i] = INFINITY;
         previusNodes[i] = -1;
     }
 
@@ -255,7 +269,7 @@ int main()
         for (long int i = 0; i < size; i++) {
             if (neighbours[actualNumber][i] > 0) {
                 long double tempG = g[actualNumber]*1.0 + neighbours[actualNumber][i];
-                if (tempG < g[i] || g[i] == -1) {
+                if (tempG < g[i]) {
                     previusNodes[i] = actualNumber;
                     g[i] = tempG;
                     f[i] = g[i] + h[i];
