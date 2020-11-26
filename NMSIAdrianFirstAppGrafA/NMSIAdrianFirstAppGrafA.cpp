@@ -277,9 +277,9 @@ int main()
                         considered[i] = nodes[i];
                     }
                 }
-                cout << "\nStep [" << i << "]\n";
+                /*cout << "\nStep [" << i << "]\n";
                 showTheMatrixDouble(g, size, "g");
-                showTheMatrixDouble(f, size, "f");
+                showTheMatrixDouble(f, size, "f");*/
                 //getchar();
             }
             
